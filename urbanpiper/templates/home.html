@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <link rel = "stylesheet" type="text/css href="/static/css/bootstrap.min.css">
+</head>
+<div class = "container">
+  <form method="post" action="search">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="col-lg-5">
+      <input type="text" name="srh" class="form-control" placeholder="Enter article title">
+        </div>
+        <label class="col-lg-2">	
+          <button type="submit" class="btn btn-danger">Search</button>
+        </label>
+      </div>
+    
+  </form><br><br> 
+</div>  
+<h1>Trending stories:</h1>
+
+{%for item in list%}
+    <li><a href = {{item.url}}>{{item.title}}</a>      </li>
+    <p><font color = maroon>By: </font>{{item.by}}          |          <font color = maroon> Upvotes: </font>{{item.score}}  </p>
+    <br style = "line-height:1%;"><br>
+    
+{% endfor %}
+
+{% endblock %}
